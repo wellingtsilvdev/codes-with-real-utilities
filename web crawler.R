@@ -58,7 +58,7 @@ for(y in years){ # loop to select years
     scr_bottom <- remote_driver$findElement(using = 'id', value = 'btnFiltrarFolhaPagamento')
     scr_bottom$clickElement()
     
-    Sys.sleep(45) # giving s pause in loop before click on download bottom
+    Sys.sleep(60) # giving s pause in loop before click on download bottom
     
     cat("Downloading...",select_month$text[i],select_year$text[y],"\n")
     
@@ -77,7 +77,45 @@ for(y in years){ # loop to select years
                       ,'nivel','valor_base','proventos'
                       ,'descontos','liquido')
     
-    dados$date <- paste(select_month$text[i],select_year$text[y]) # adding dates to date column
+    # converting dates to english format and adding to date column
+    dates <-  select_month$text[i]
+    
+    if(dates=='JANEIRO'){
+      dados$date <- paste('Jan',select_year$text[y]) # adding dates to date column
+    }
+    if(dates=='FEVEREIRO'){
+      dados$date <- paste('Feb',select_year$text[y]) # adding dates to date column
+    }
+    if(dates=='MARÇO'){
+      dados$date <- paste('Mar',select_year$text[y]) # adding dates to date column
+    }
+    if(dates=='ABRIL'){
+      dados$date <- paste('Apr',select_year$text[y]) # adding dates to date column
+    }
+    if(dates=='MAIO'){
+      dados$date <- paste('May',select_year$text[y]) # adding dates to date column
+    }
+    if(dates=='JUNHO'){
+      dados$date <- paste('Jun',select_year$text[y]) # adding dates to date column
+    }
+    if(dates=='JULHO'){
+      dados$date <- paste('Jul',select_year$text[y]) # adding dates to date column
+    }
+    if(dates=='AGOSTO'){
+      dados$date <- paste('Aug',select_year$text[y]) # adding dates to date column
+    }
+    if(dates=='SETEMBRO'){
+      dados$date <- paste('Sep',select_year$text[y]) # adding dates to date column
+    }
+    if(dates=='OUTUBRO'){
+      dados$date <- paste('Oct',select_year$text[y]) # adding dates to date column
+    }
+    if(dates=='NOVEMBRO'){
+      dados$date <- paste('Nov',select_year$text[y]) # adding dates to date column
+    }
+    if(dates=='DEZEMBRO'){
+      dados$date <- paste('Dec',select_year$text[y]) # adding dates to date column
+    }
     
     # treating the numeric columns
     for(j in 1:9){

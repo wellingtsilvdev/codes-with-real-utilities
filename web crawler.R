@@ -70,7 +70,7 @@ for(y in years){ # loop to select years
     
     setwd("D:/Wellington/Desktop/Dados") # set your directory here
     
-    dados = read.csv('Município Online.csv',header=T,sep=',') # loading downloaded file
+    dados = read.csv('MunicÃ­pio Online.csv',header=T,sep=',') # loading downloaded file
     
     # naming columns
     names(dados) <- c('date','nome','matricula','cargo'
@@ -84,7 +84,7 @@ for(y in years){ # loop to select years
       if(j!=3){
         dados[,j] <- as.character(dados[,j]) # converting all columns to characters except matricula column
       }
-      if(j>=6 & i<=9){
+      if(j>=6 & j<=9){
         dados[,j] <- gsub("[a-zA-Z$.]", "", dados[,j]) # removing R$ and .
         dados[,j] <- gsub("[,]", ".", dados[,j]) # replacing , by .
         dados[,j] <- as.numeric(dados[,j]) # converting into numeric again
@@ -92,7 +92,7 @@ for(y in years){ # loop to select years
     }
     
     # exporting new file treated
-    write.table(dados,paste("file",z,".csv"),sep=',',dec='.',row.names = F)
+    write.table(dados,paste("file",z,".csv"),sep=',',dec='.',row.names = F,fileEncoding = "UTF-8")
     
     if(z==1){
       file1 = read.csv('file 1 .csv',header=T,sep=',') # loading downloaded file
@@ -112,13 +112,13 @@ for(y in years){ # loop to select years
       total_file = rbind(total_file,file2)
       
       # exporting new file treated
-      write.table(total_file,"final_file.csv",sep=',',dec='.',row.names = F)
+      write.table(total_file,"final_file.csv",sep=',',dec='.',row.names = F,fileEncoding = "UTF-8")
       file.remove(file_name)
     }
     
-    file.remove("Município Online.csv") # deliting old file
+    file.remove("MunicÃ­pio Online.csv") # deliting old file
   }
-  if(y=3 & i=12){
+  if(y==3 & i==12){
     print("web crawler finish all downloads!")
   }
 }
